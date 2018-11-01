@@ -7,7 +7,7 @@ export interface ITask {
 }
 
 class Todo {
-	@observable private todos: ITask[] = [];
+	@observable private todos: ITask[] = [{ task: '1', completed:false, assignee: '1' }];
 
 	@computed get completedTodosCount() {
 		return this.todos.filter(
@@ -15,12 +15,17 @@ class Todo {
 		).length;
 	}
 
-	@computed get report() {
-		if (this.todos.length === 0) {
-			return "<none>"
-		};
-		return `Next todo: "${this.todos[0].task}". ` +
-			`Progress: ${this.completedTodosCount}/${this.todos.length}`;
+	// @computed get report() {
+	// 	if (this.todos.length === 0) {
+	// 		return "<none>"
+	// 	};
+	// 	return `Next todo: "${this.todos[0].task}". ` +
+	// 		`Progress: ${this.completedTodosCount}/${this.todos.length}`;
+	// }
+
+	@computed 
+	get list() {
+		return this.todos;
 	}
 
 	public addTodo(task: string) {

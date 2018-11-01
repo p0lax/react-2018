@@ -1,20 +1,20 @@
 import * as React from 'react';
+import { Provider } from 'mobx-react';
+import Inner from './Inner';
 import './App.css';
 
-import logo from './logo.svg';
+import TodoStore from './stores/TodoStore';
+
+const todoStore = new TodoStore();
 
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      <Provider todoStore={todoStore}>
+        <div className="App">
+          <Inner />
+        </div>
+      </Provider>
     );
   }
 }
